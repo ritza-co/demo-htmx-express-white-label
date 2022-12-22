@@ -29,28 +29,8 @@ app.use('/api', itemRoutes.routes);
 
 app.get('/', async (req, res) => {
   const items = await Item.findAndCountAll();
-  console.log(process.env.navbar);
-  var display = '';
-  if (process.env.navbar == 'true') {
-    display = '';
-  } else {
-    display = 'none';
-  }
-  var font = `font-family: ${process.env.font}`;
-  var navTheme = `navbar navbar-expand-lg navbar-${process.env.navTheme}`;
-  var navStyle = `background-color: ${process.env.navColor}; display: ${display}`;
-  var buttonColor = `background-color: ${process.env.buttonColor}; color: ${process.env.buttonTextColor}`;
   return res.render('index', {
     items: items.rows,
-    title: process.env.title,
-    heading: process.env.heading,
-    logo: process.env.logo,
-    font: font,
-    tableHeading1: process.env.tableHeading1,
-    tableHeading2: process.env.tableHeading2,
-    navTheme: navTheme,
-    navStyle: navStyle,
-    buttonColor: buttonColor,
   });
 });
 
